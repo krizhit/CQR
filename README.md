@@ -48,7 +48,3 @@ This project explores two creative approaches to injecting color into QR codes a
 
   - Modify the color mapping in `qr_colorizer.py` to tailor the color scheme to your preferences.
   - Enhance the Django app by adding features like user input validation, error handling, or interactive styling elements.
-
-
-
-
