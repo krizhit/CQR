@@ -1,2 +1,90 @@
 
 <h1> total visits:{{ total_visits }}</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multicolor QR Code Generator</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0;">
+    <header style="background-color: #333; color: #fff; padding: 1em; text-align: center;">
+        <nav>
+            <ul style="list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-between;">
+                <li style="margin-right: 20px;"><a href="#" style="color: #fff; text-decoration: none;">Home</a></li>
+                <li style="margin-right: 20px;"><a href="#" style="color: #fff; text-decoration: none;">Encode</a></li>
+                <li style="margin-right: 20px;"><a href="#" style="color: #fff; text-decoration: none;">Decode</a></li>
+                <li style="margin-right: 20px;"><a href="#" style="color: #fff; text-decoration: none;">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main style="display: flex; flex-direction: column; align-items: center; padding: 2em;">
+        <section id="hero" style="background-color: #f0f0f0; padding: 2em; text-align: center;">
+            <h1 style="margin-top: 0;">Multicolor QR Code Generator</h1>
+            <p>Generate and decode QR codes with multiple colors</p>
+            <button id="encode-btn" style="background-color: #4CAF50; color: #fff; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;">Encode QR Code</button>
+            <button id="decode-btn" style="background-color: #4CAF50; color: #fff; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;">Decode QR Code</button>
+        </section>
+        <section id="encode-section" style="display:none; padding: 2em; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+            <h2>Encode QR Code</h2>
+            <form id="encode-form">
+                <label for="text-input">Text to encode:</label>
+                <input type="text" id="text-input" name="text" style="width: 100%; padding: 10px; margin-bottom: 20px; box-sizing: border-box;">
+                <label for="color-scheme">Color scheme:</label>
+                <select id="color-scheme" name="colorScheme" style="width: 100%; padding: 10px; margin-bottom: 20px; box-sizing: border-box;">
+                    <option value="cym">CYM</option>
+                    <option value="rgb">RGB</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <button id="generate-qr-btn" style="background-color: #4CAF50; color: #fff; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;">Generate QR Code</button>
+            </form>
+            <div id="qr-code-container" style="margin-top: 20px;"></div>
+        </section>
+        <section id="decode-section" style="display:none; padding: 2em; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+            <h2>Decode QR Code</h2>
+            <form id="decode-form">
+                <label for="qr-code-input">QR code image:</label>
+                <input type="file" id="qr-code-input" name="qrCode" style="width: 100%; padding: 10px; margin-bottom: 20px; box-sizing: border-box;">
+                <button id="decode-qr-btn" style="background-color: #4CAF50; color: #fff; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;">Decode QR Code</button>
+                            </form>
+            <div id="decoded-text-container" style="margin-top: 20px;"></div>
+        </section>
+    </main>
+    <script>
+        const encodeBtn = document.getElementById('encode-btn');
+        const decodeBtn = document.getElementById('decode-btn');
+        const encodeSection = document.getElementById('encode-section');
+        const decodeSection = document.getElementById('decode-section');
+        const generateQrBtn = document.getElementById('generate-qr-btn');
+        const decodeQrBtn = document.getElementById('decode-qr-btn');
+        const qrCodeContainer = document.getElementById('qr-code-container');
+        const decodedTextContainer = document.getElementById('decoded-text-container');
+
+        encodeBtn.addEventListener('click', () => {
+            encodeSection.style.display = 'block';
+            decodeSection.style.display = 'none';
+        });
+
+        decodeBtn.addEventListener('click', () => {
+            decodeSection.style.display = 'block';
+            encodeSection.style.display = 'none';
+        });
+
+        generateQrBtn.addEventListener('click', () => {
+            const textInput = document.getElementById('text-input').value;
+            const colorScheme = document.getElementById('color-scheme').value;
+            // Call QR code generation API or library here
+            // ...
+            qrCodeContainer.innerHTML = '<img src="generated-qr-code.png" alt="QR Code">';
+        });
+
+        decodeQrBtn.addEventListener('click', () => {
+            const qrCodeInput = document.getElementById('qr-code-input').files[0];
+            // Call QR code decoding API or library here
+            // ...
+            decodedTextContainer.innerHTML = '<p>Decoded text: <span id="decoded-text"></span></p>';
+            document.getElementById('decoded-text').innerText = 'Decoded text';
+        });
+    </script>
+</body>
+</html>
